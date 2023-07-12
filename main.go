@@ -6,12 +6,14 @@ import (
 )
 
 func main() {
+	core := framework.NewCore()
+	registerRouter(core)
 	server := &http.Server{
-		Addr:    ":8080",
-		Handler: framework.NewCore(), // custom request core handler
+		Handler: core,
+		Addr:    ":8888",
 	}
 	err := server.ListenAndServe()
 	if err != nil {
-		return
+		panic(err)
 	}
 }
